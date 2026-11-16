@@ -36,8 +36,8 @@ export interface ProjectCard {
   windowTitle: string;
   stack: string[];
   links: ProjectLink[];
-  /** GitHub stars, shown next to the name. */
-  stars?: number;
+  /** Public GitHub repo name under NiladriHazra. Its live star count shows next to the title. */
+  repo?: string;
   href: string;
   category: string;
   year: string;
@@ -65,6 +65,7 @@ export const projectCards: ProjectCard[] = [
   },
   {
     id: "open-fiesta",
+    repo: "Open-Fiesta",
     title: "Open Fiesta",
     description: "Ask every AI model at once. Free and open source.",
     about:
@@ -78,13 +79,13 @@ export const projectCards: ProjectCard[] = [
       { label: "openfiesta.app", href: "https://openfiesta.app" },
       { label: "GitHub", href: "https://github.com/NiladriHazra/Open-Fiesta" },
     ],
-    stars: 958,
     href: "/projects/open-fiesta",
     category: "Open source",
     year: "2025",
   },
   {
     id: "agent-manager",
+    repo: "agent-manager",
     title: "agent-manager",
     description: "Which coding agents are working, and which are waiting on you.",
     about:
@@ -104,6 +105,7 @@ export const projectCards: ProjectCard[] = [
   },
   {
     id: "whattobuild",
+    repo: "WhatToBuild",
     title: "WhatToBuild",
     description: "Find, understand and compare open-source projects.",
     about:
@@ -117,13 +119,13 @@ export const projectCards: ProjectCard[] = [
       { label: "Live", href: "https://what-to-build.niladri.tech" },
       { label: "GitHub", href: "https://github.com/NiladriHazra/WhatToBuild" },
     ],
-    stars: 74,
     href: "/projects/whattobuild",
     category: "Web app",
     year: "2025",
   },
   {
     id: "filerepo",
+    repo: "filerepo",
     title: "filerepo",
     description: "Grab any file or folder from GitHub without cloning.",
     about:
@@ -143,6 +145,7 @@ export const projectCards: ProjectCard[] = [
   },
   {
     id: "maxmem",
+    repo: "MaxMEM",
     title: "MaxMEM",
     description: "Hand work between Claude Code, Codex and OpenCode.",
     about:
@@ -162,6 +165,7 @@ export const projectCards: ProjectCard[] = [
   },
   {
     id: "humistack",
+    repo: "humiStack",
     title: "humiStack",
     description: "The agent skills I use every day.",
     about: "Skills for Claude Code, Codex and OpenCode: slimming down bloated repos, refactoring prompts, orchestrating workers and handing off tasks.",
@@ -177,6 +181,7 @@ export const projectCards: ProjectCard[] = [
   },
   {
     id: "slop-detect",
+    repo: "Slop-Detect",
     title: "Slop-Detect",
     description: "Flags copied and AI-slop tweets on your timeline.",
     about: "A browser extension that marks tweets that look copied or machine-written, right in your timeline.",
@@ -186,13 +191,13 @@ export const projectCards: ProjectCard[] = [
     windowTitle: "x.com · Slop-Detect",
     stack: ["JavaScript", "Chrome extension"],
     links: [{ label: "GitHub", href: "https://github.com/NiladriHazra/Slop-Detect" }],
-    stars: 11,
     href: "https://github.com/NiladriHazra/Slop-Detect",
     category: "Extension",
     year: "2026",
   },
   {
     id: "clean-image",
+    repo: "clean-image",
     title: "clean-image",
     description: "Strip AI and camera metadata before you post.",
     about: "Drop in an image and download a copy with its AI-generation and camera metadata removed.",
@@ -211,6 +216,7 @@ export const projectCards: ProjectCard[] = [
   },
   {
     id: "codepixel",
+    repo: "CodePixel_Public",
     title: "CodePixel",
     description: "Competitive programming and interview prep with AI.",
     about: "Practice problems, interview prep and code sharing, with an AI assistant that helps when you're stuck.",

@@ -10,6 +10,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ResumeButton from "@/components/ResumeButton";
 import { site } from "@/data/site";
 import { usePortfolioSound } from "@/hooks/usePortfolioSound";
+import { useGitHubStars } from "@/hooks/useGitHubStars";
 
 const fadeUp = {
   hidden: { opacity: 0 },
@@ -26,6 +27,7 @@ const fadeUp = {
 export default function Home() {
   const playClick = usePortfolioSound("/sounds/click.mp3");
   const playHover = usePortfolioSound("/sounds/hover.mp3", 0.06);
+  const stars = useGitHubStars();
 
   return (
     <div className="min-h-screen">
@@ -65,7 +67,7 @@ export default function Home() {
           <p>
             Last year I posted a side project called{" "}
             <Link href="/projects/open-fiesta">Open Fiesta</Link> on X. It picked up{" "}
-            <Link href="https://github.com/NiladriHazra/Open-Fiesta" external>958 GitHub stars</Link> and 32,000
+            <Link href="https://github.com/NiladriHazra/Open-Fiesta" external>{(stars["Open-Fiesta"] ?? 958).toLocaleString()} GitHub stars</Link> and 32,000
             users, and a DM that made me Runable&apos;s first tech intern.
           </p>
           <p>

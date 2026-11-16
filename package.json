@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "next build && wrangler deploy",
-    "resume": "node scripts/resume.mjs"
+    "deploy": "npm run build && wrangler deploy",
+    "resume": "node scripts/resume.mjs",
+    "prebuild": "node scripts/stars.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.10",

@@ -7,6 +7,7 @@ import { featuredIds, projectCards, type ProjectCard } from "@/data/project";
 import { usePortfolioSound } from "@/hooks/usePortfolioSound";
 import { posterFor } from "@/lib/poster";
 import { Chevron, LogoTile } from "@/components/RowBits";
+import { useGitHubStars } from "@/hooks/useGitHubStars";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -43,11 +44,13 @@ function PreviewWindow({ project }: { project: ProjectCard }) {
 
 function ProjectRow({
   project,
+  stars,
   open,
   onToggle,
   last,
 }: {
   project: ProjectCard;
+  stars?: number;
   open: boolean;
   onToggle: () => void;
   last: boolean;
@@ -67,9 +70,14 @@ function ProjectRow({
         <span className="min-w-0 flex-1">
           <span className="flex items-baseline gap-2">
             <span className="text-zinc-900 dark:text-zinc-100">{project.title}</span>
-            {project.stars ? (
-              <span className="text-xs tabular-nums text-zinc-400">★ {project.stars.toLocaleString()}</span>
-            ) : null}
+            {stars !== undefined && (
+              <span
+                className="text-xs tabular-nums text-zinc-400"
+                title={`${stars.toLocaleString()} GitHub stars`}
+              >
+                ★ {stars.toLocaleString()}
+              </span>
+            )}
           </span>
           <span className="block text-sm text-pretty text-zinc-500 dark:text-zinc-400">{project.description}</span>
         </span>
@@ -125,6 +133,7 @@ export default function ProjectsSection() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const playClick = usePortfolioSound("/sounds/click.mp3");
+  const stars = useGitHubStars();
 
   const shown = isExpanded ? projectCards : projectCards.filter((p) => featuredIds.includes(p.id));
 
@@ -137,6 +146,7 @@ export default function ProjectsSection() {
           <ProjectRow
             key={project.id}
             project={project}
+            stars={project.repo ? stars[project.repo] : undefined}
             open={openId === project.id}
             last={i === shown.length - 1}
             onToggle={() => {
