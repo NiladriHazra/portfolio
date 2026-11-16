@@ -2,7 +2,7 @@
 // public/og.png with headless Chrome. Run after editing either file:
 //   npm run resume
 import { execFileSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { copyFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
 const chrome =
@@ -15,4 +15,6 @@ const base = ["--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-pdf-
 
 execFileSync(chrome, [...base, `--print-to-pdf=${resolve("public/resume.pdf")}`, url("resume.html")], { stdio: "inherit" });
 execFileSync(chrome, [...base, "--window-size=1200,630", `--screenshot=${resolve("public/og.png")}`, url("og.html")], { stdio: "inherit" });
-console.log("Wrote public/resume.pdf and public/og.png");
+// The site shows this copy in its resume viewer.
+copyFileSync(resolve("scripts/resume.html"), resolve("public/resume.html"));
+console.log("Wrote public/resume.pdf, public/resume.html and public/og.png");

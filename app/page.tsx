@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Link from "@/components/Link";
 import ProjectsSection from "@/components/ProjectsSection";
 import ThemeToggle from "@/components/ThemeToggle";
+import ResumeButton from "@/components/ResumeButton";
 import { site } from "@/data/site";
 import { usePortfolioSound } from "@/hooks/usePortfolioSound";
 
@@ -38,8 +39,13 @@ export default function Home() {
           variants={fadeUp}
         >
           <div className="flex items-center justify-between">
-            <h1 className="text-lg">{site.name}</h1>
-            <ThemeToggle />
+            <h1 className="text-lg">
+              {site.name} <span className="text-zinc-400">(Humi)</span>
+            </h1>
+            <div className="flex items-center gap-3">
+              <ResumeButton />
+              <ThemeToggle />
+            </div>
           </div>
           <p className="text-md text-zinc-500">{site.role}</p>
         </motion.div>
@@ -53,18 +59,23 @@ export default function Home() {
           variants={fadeUp}
         >
           <p>
-            I build things and put them in front of people. I made{" "}
-            <Link href="/projects/open-fiesta">Open Fiesta</Link>, an open-source app to chat with
-            every AI model at once. One tweet took it to 32K users, and that&apos;s how I became
-            Runable&apos;s first intern.
+            I&apos;m Niladri, Humi on the internet. I like making things that people end up
+            actually using.
+          </p>
+          <p>
+            Last year I posted a side project called{" "}
+            <Link href="/projects/open-fiesta">Open Fiesta</Link> on X. It picked up{" "}
+            <Link href="https://github.com/NiladriHazra/Open-Fiesta" external>958 GitHub stars</Link> and 32,000
+            users, and a DM that made me Runable&apos;s first tech intern.
           </p>
           <p>
             Now I&apos;m a GTM engineer there, and I&apos;m building{" "}
-            <Link href="/projects/klipeo">Klipeo</Link>, an AI video editor, on the side.
+            <Link href="/projects/klipeo">Klipeo</Link>, a video editor you can just talk to.
           </p>
           <p>
-            Say hi on <Link href="https://x.com/byteHumi" external>X</Link>,{" "}
-            <Link href="https://www.linkedin.com/in/niladri-hazra-b573282a7/" external>LinkedIn</Link>, or{" "}
+            Everything I make lives on <Link href="https://github.com/NiladriHazra" external>GitHub</Link>. I think
+            out loud on <Link href="https://x.com/byteHumi" external>X</Link>, keep it formal on{" "}
+            <Link href="https://www.linkedin.com/in/niladri-hazra-b573282a7/" external>LinkedIn</Link>, and read every{" "}
             <Link href={site.cta.href} external>email</Link>.
           </p>
         </motion.div>

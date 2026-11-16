@@ -26,9 +26,9 @@ export const experience: Role[] = [
     summary:
       "Joined as the first tech intern after Open Fiesta. Now I build product and lead the tech side of the affiliate program.",
     highlights: [
-      { title: "Carousels", stat: "Shipped", body: "Image and video generation, which became the carousel feature." },
-      { title: "AI UGC", stat: "80M views", body: "A content pipeline posting to YouTube, TikTok and Instagram, in two months." },
-      { title: "Runclub", stat: "2,500 entries", body: "A builder community. Its weekly hackathons got 2,500 submissions in two weeks." },
+      { title: "Carousels", stat: "shipped", body: "Image and video generation, which became the carousel feature." },
+      { title: "AI UGC", stat: "80M views", body: "A content pipeline posting to YouTube, TikTok and Instagram. 80M views in two months." },
+      { title: "Runclub", stat: "2.5K entries", body: "A builder community I started. Weekly hackathons, 2,500 submissions in two weeks." },
     ],
   },
   {
