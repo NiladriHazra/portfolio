@@ -33,7 +33,6 @@ export const experience: Role[] = [
   },
   {
     org: "Long Term Collab",
-    href: "https://www.groimon.com",
     logo: "/logos/groimon.svg",
     title: "Software Developer Intern",
     start: "May 2025",
@@ -42,7 +41,6 @@ export const experience: Role[] = [
   },
   {
     org: "Eastern Coalfields Limited",
-    href: "https://www.easterncoal.nic.in/",
     logo: "/logos/ecl.png",
     title: "Software Developer Intern",
     start: "Dec 2024",
