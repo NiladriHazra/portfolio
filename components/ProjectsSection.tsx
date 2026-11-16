@@ -39,7 +39,7 @@ const GridIcon = ({ active }: { active: boolean }) => (
 );
 
 export default function ProjectsSection() {
-  const [view, setView] = useState<"list" | "grid">("grid");
+  const [view, setView] = useState<"list" | "grid">("list");
   const [isExpanded, setIsExpanded] = useState(false);
   const [hoverDisabled, setHoverDisabled] = useState(false);
 
@@ -107,43 +107,64 @@ export default function ProjectsSection() {
       )}
 
       {view === "list" && (
-        <motion.ul className="group mt-4 flex flex-col">
+        <ul className="group mt-3 flex flex-col">
           <AnimatePresence initial={false}>
             {displayedProjects.map((project, i) => {
               const isNew = !featuredIds.includes(project.id);
+              const isExternal = project.href.startsWith("http");
               return (
                 <motion.li
                   key={project.id}
+                  initial={isNew ? { opacity: 0, height: 0 } : false}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   onMouseEnter={() => {
-                    if (!hoverDisabled) {
-                      playHover();
-                    }
+                    if (!hoverDisabled) playHover();
                   }}
-                  className={`group/item cursor-pointer px-2 -mx-2 rounded transition-all duration-300 ease-out hover:-translate-x-0.5 ${
-                    isNew ? "animate-fade-blue" : ""
-                  } ${
-                    i < displayedProjects.length - 1 ? "border-b border-zinc-500/20" : ""
+                  className={`group/item overflow-hidden ${
+                    i < displayedProjects.length - 1 ? "border-b border-zinc-200 dark:border-zinc-800" : ""
                   }`}
                 >
-                  <motion.div
-                    initial={{ height: 0, opacity: 0, filter: "blur(4px)", overflow: "hidden" }}
-                    animate={{ height: "auto", opacity: 1, filter: "blur(0px)" }}
-                    exit={{ height: 0, opacity: 0, filter: "blur(4px)" }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="py-3 w-full"
+                  <NextLink
+                    href={project.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    onClick={() => playClick()}
+                    className="flex items-center gap-3 py-3.5"
                   >
-                    <NextLink href={project.href} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 w-full">
-                      <span className="list-title text-sm sm:text-base">{project.title}</span>
-                      <span className="list-meta text-sm text-zinc-500 dark:text-zinc-400">
-                        {project.category} · {project.year}
+                    {project.logo ? (
+                      <img
+                        src={project.logo}
+                        alt=""
+                        width={28}
+                        height={28}
+                        className="size-7 shrink-0 rounded-md border border-zinc-200 bg-white object-contain dark:border-zinc-800"
+                      />
+                    ) : (
+                      <span
+                        aria-hidden
+                        className="grid size-7 shrink-0 place-items-center rounded-md border border-zinc-200 bg-zinc-50 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300"
+                      >
+                        {project.title[0].toUpperCase()}
                       </span>
-                    </NextLink>
-                  </motion.div>
+                    )}
+                    <span className="min-w-0 flex-1">
+                      <span className="list-title block">{project.title}</span>
+                      <span className="list-meta block text-sm text-pretty">{project.description}</span>
+                    </span>
+                    <span
+                      aria-hidden
+                      className="list-meta shrink-0 text-sm transition-transform duration-200 group-hover/item:translate-x-0.5"
+                    >
+                      {isExternal ? "↗" : "→"}
+                    </span>
+                  </NextLink>
                 </motion.li>
               );
             })}
           </AnimatePresence>
-        </motion.ul>
+        </ul>
       )}
 
       {projectCards.length > featuredIds.length && (

@@ -23,7 +23,7 @@ export interface SiteConfig {
 
 export const site: SiteConfig = {
   name: "Niladri Hazra",
-  role: "GTM Engineer at Runable · building Klipeo",
+  role: "GTM Engineer at Runable",
   location: "Kolkata, India",
   url: "https://niladri.in",
   metaDescription:

@@ -38,7 +38,7 @@ export default function Home() {
           variants={fadeUp}
         >
           <div className="flex items-center justify-between">
-            <h1 className="text-lg">{site.name} <span className="text-zinc-400">(Humi)</span></h1>
+            <h1 className="text-lg">{site.name}</h1>
             <ThemeToggle />
           </div>
           <p className="text-md text-zinc-500">{site.role}</p>
@@ -52,36 +52,41 @@ export default function Home() {
           animate="show"
           variants={fadeUp}
         >
-          {site.bio.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
           <p>
-            Want to work together?{" "}
-            <Link href={site.cta.href} external>
-              {site.cta.label}
-            </Link>
-            .
+            I build things and put them in front of people. I made{" "}
+            <Link href="/projects/open-fiesta">Open Fiesta</Link>, an open-source app to chat with
+            every AI model at once. One tweet took it to 32K users, and that&apos;s how I became
+            Runable&apos;s first intern.
+          </p>
+          <p>
+            Now I&apos;m a GTM engineer there, and I&apos;m building{" "}
+            <Link href="/projects/klipeo">Klipeo</Link>, an AI video editor, on the side.
+          </p>
+          <p>
+            Say hi on <Link href="https://x.com/byteHumi" external>X</Link>,{" "}
+            <Link href="https://www.linkedin.com/in/niladri-hazra-b573282a7/" external>LinkedIn</Link>, or{" "}
+            <Link href={site.cta.href} external>email</Link>.
           </p>
         </motion.div>
 
-        {/* Projects */}
+        {/* Experience */}
         <motion.div
           custom={2}
           initial="hidden"
           animate="show"
           variants={fadeUp}
         >
-          <ProjectsSection />
+          <ExperienceSection />
         </motion.div>
 
-        {/* Experience */}
+        {/* Projects */}
         <motion.div
           custom={3}
           initial="hidden"
           animate="show"
           variants={fadeUp}
         >
-          <ExperienceSection />
+          <ProjectsSection />
         </motion.div>
 
         {/* Elsewhere */}

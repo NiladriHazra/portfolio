@@ -1,13 +1,16 @@
 /**
- * Project cards on the home page. Cards whose href starts with /projects/
- * open a case study from data/caseStudies.ts (slug must match the id);
- * anything else opens externally.
+ * Project rows on the home page. Rows whose href starts with /projects/ open
+ * a case study from data/caseStudies.ts (slug must match the id); anything
+ * else opens externally.
  */
 
 export interface ProjectCard {
   id: string;
   title: string;
+  /** One line, shown in the list. */
   description: string;
+  /** Square logo. Omit to show the first letter. */
+  logo?: string;
   media: string;
   mediaType: "image" | "video";
   href: string;
@@ -25,9 +28,10 @@ export const projectCards: ProjectCard[] = [
   {
     id: "klipeo",
     title: "Klipeo",
-    description: "An AI video editor for product videos. Tell the agent what you want, check every cut on a real timeline.",
-    media: "/img/klipeo.jpg",
-    mediaType: "image",
+    description: "Edit product videos by asking. Every cut lands on a real timeline.",
+    logo: "/logos/klipeo.png",
+    media: "/img/klipeo.mp4",
+    mediaType: "video",
     href: "/projects/klipeo",
     category: "Product",
     year: "2026",
@@ -35,7 +39,8 @@ export const projectCards: ProjectCard[] = [
   {
     id: "open-fiesta",
     title: "Open Fiesta",
-    description: "Open-source multi-model AI chat. 958★, about 32K users, sponsored by Vercel.",
+    description: "Ask every AI model at once, free and open source. 32K users.",
+    logo: "/logos/openfiesta.png",
     media: "/img/openfiesta.png",
     mediaType: "image",
     href: "/projects/open-fiesta",
@@ -45,7 +50,8 @@ export const projectCards: ProjectCard[] = [
   {
     id: "agent-manager",
     title: "agent-manager",
-    description: "Every coding agent you're running, in one macOS menu bar icon. Signed and notarized.",
+    description: "See which coding agents are working and which are waiting on you.",
+    logo: "/logos/agent-manager.png",
     media: "/img/agent-manager.mp4",
     mediaType: "video",
     href: "/projects/agent-manager",
@@ -55,17 +61,17 @@ export const projectCards: ProjectCard[] = [
   {
     id: "whattobuild",
     title: "WhatToBuild",
-    description: "Discover, analyze and compare open-source projects and developers with AI.",
-    media: "/img/wtb.png",
-    mediaType: "image",
+    description: "Find, understand and compare open-source projects with AI.",
+    media: "/img/wtb.mp4",
+    mediaType: "video",
     href: "/projects/whattobuild",
-    category: "Developer tool",
+    category: "Web app",
     year: "2025",
   },
   {
     id: "filerepo",
     title: "filerepo",
-    description: "A terminal UI to grab any file or folder from GitHub without cloning.",
+    description: "Grab any file or folder from GitHub without cloning.",
     media: "/img/filerepo.png",
     mediaType: "image",
     href: "/projects/filerepo",
@@ -75,7 +81,7 @@ export const projectCards: ProjectCard[] = [
   {
     id: "maxmem",
     title: "MaxMEM",
-    description: "Local-first handoff memory for Codex, Claude Code and OpenCode. 2.3K npm downloads.",
+    description: "Hand off work between Claude Code, Codex and OpenCode.",
     media: "/img/maxmem.jpg",
     mediaType: "image",
     href: "/projects/maxmem",
@@ -85,7 +91,7 @@ export const projectCards: ProjectCard[] = [
   {
     id: "humistack",
     title: "humiStack",
-    description: "The agent skills I use every day, cleaned up so anyone can install them.",
+    description: "The agent skills I use every day.",
     media: "/img/humistack.png",
     mediaType: "image",
     href: "https://github.com/NiladriHazra/humiStack",
@@ -95,7 +101,7 @@ export const projectCards: ProjectCard[] = [
   {
     id: "slop-detect",
     title: "Slop-Detect",
-    description: "A browser extension that flags copied or AI-slop tweets on your timeline.",
+    description: "Flags copied and AI-slop tweets on your timeline.",
     media: "/img/slop-detect.png",
     mediaType: "image",
     href: "https://github.com/NiladriHazra/Slop-Detect",
@@ -105,7 +111,7 @@ export const projectCards: ProjectCard[] = [
   {
     id: "clean-image",
     title: "clean-image",
-    description: "Strip AI-generation and camera metadata from an image before you post it.",
+    description: "Strip AI and camera metadata from an image before posting.",
     media: "/img/clean-image.png",
     mediaType: "image",
     href: "https://clean.niladri.in",
@@ -115,7 +121,7 @@ export const projectCards: ProjectCard[] = [
   {
     id: "codepixel",
     title: "CodePixel",
-    description: "Competitive programming, interview prep and code sharing with an AI assistant.",
+    description: "Competitive programming and interview prep with an AI assistant.",
     media: "/img/codepixel.png",
     mediaType: "image",
     href: "https://codepixel.niladri.tech",

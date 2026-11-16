@@ -4,153 +4,116 @@
 <meta charset="utf-8">
 <title>Niladri Hazra — Resume</title>
 <style>
-  @page { size: A4; margin: 0; }
+  @page { size: Letter; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --ink: #111; --mid: #444; --soft: #777; --line: #e3e3e3; --blue: #1100ff; }
   body {
-    font: 9.2pt/1.38 -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: var(--ink); width: 210mm; padding: 10mm 15mm 7mm;
+    font-family: Charter, "Bitstream Charter", Georgia, serif;
+    font-size: 10.2pt; line-height: 1.26; color: #000;
+    width: 8.5in; padding: 0.45in 0.55in 0.35in;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   a { color: inherit; text-decoration: none; }
-  header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 9pt; border-bottom: 1.2pt solid var(--ink); }
-  h1 { font-size: 21pt; font-weight: 650; letter-spacing: -0.02em; line-height: 1.05; }
-  h1 span { color: var(--soft); font-weight: 400; }
-  .role { color: var(--mid); margin-top: 3pt; font-size: 10.2pt; }
-  .contact { text-align: right; color: var(--mid); font-size: 8.8pt; line-height: 1.55; }
-  .contact b { color: var(--ink); font-weight: 550; }
-  .summary { margin-top: 8pt; color: var(--mid); font-size: 9.6pt; }
-  .summary b { color: var(--ink); font-weight: 600; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin-top: 8pt; }
-  .stat { border: 0.8pt solid var(--line); border-radius: 5pt; padding: 5pt 7pt; }
-  .stat b { display: block; font-size: 13pt; letter-spacing: -0.01em; color: var(--blue); }
-  .stat span { font-size: 7.6pt; color: var(--soft); line-height: 1.25; display: block; }
-  h2 { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft); font-weight: 600; margin: 10pt 0 4pt; padding-bottom: 3pt; border-bottom: 0.6pt solid var(--line); }
-  .item { margin-top: 5pt; break-inside: avoid; }
-  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
-  .row .t { font-weight: 600; font-size: 10pt; }
-  .row .t i { font-style: normal; font-weight: 400; color: var(--mid); }
-  .row .d { color: var(--soft); font-size: 8.6pt; white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .note { color: var(--soft); font-size: 8.6pt; margin-top: 1pt; }
-  ul { margin: 3pt 0 0 11pt; color: var(--mid); }
-  li { margin-top: 1.6pt; padding-left: 1pt; }
-  li::marker { color: #aaa; }
-  li b { color: var(--ink); font-weight: 600; }
-  .stack { color: var(--soft); font-size: 8.3pt; margin-top: 2pt; }
-  .link { color: var(--blue); font-size: 8.6pt; }
-  .skills { display: grid; grid-template-columns: 58pt 1fr; row-gap: 2.5pt; color: var(--mid); }
-  .skills b { color: var(--ink); font-weight: 600; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14pt; }
-  .edu { grid-template-columns: 0.85fr 1.15fr; }
+  header { text-align: center; }
+  h1 { font-size: 22pt; font-weight: 700; letter-spacing: 0.01em; }
+  .contact { margin-top: 3pt; font-size: 9.6pt; }
+  .contact span + span::before { content: "|"; margin: 0 6pt; }
+  h2 {
+    font-size: 10.8pt; font-weight: 700; font-variant: small-caps; letter-spacing: 0.04em;
+    border-bottom: 0.7pt solid #000; padding-bottom: 1pt; margin: 9pt 0 3pt;
+  }
+  .entry { margin-top: 4pt; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .row b { font-weight: 700; }
+  .row i { font-style: italic; }
+  .date { white-space: nowrap; }
+  ul { margin: 2pt 0 0 14pt; }
+  li { margin-top: 1.2pt; padding-left: 2pt; }
+  .tech { font-style: italic; }
+  .skills p { margin-top: 1.5pt; }
+  .skills b { font-weight: 700; }
 </style>
 </head>
 <body>
   <header>
-    <div>
-      <h1>Niladri Hazra <span>(Humi)</span></h1>
-      <div class="role">GTM Engineer at Runable · Building Klipeo · Creator of Open Fiesta</div>
-    </div>
+    <h1>Niladri Hazra</h1>
     <div class="contact">
-      <b><a href="mailto:niladrivit@gmail.com">niladrivit@gmail.com</a></b><br>
-      <a href="https://niladri.in">niladri.in</a> · Kolkata, India<br>
-      <a href="https://github.com/NiladriHazra">github.com/NiladriHazra</a> · <a href="https://x.com/byteHumi">x.com/byteHumi</a><br>
-      <a href="https://www.linkedin.com/in/niladri-hazra-b573282a7/">linkedin.com/in/niladri-hazra-b573282a7</a>
+      <span><a href="mailto:niladrivit@gmail.com">niladrivit@gmail.com</a></span><span><a href="https://niladri.in">niladri.in</a></span><span><a href="https://github.com/NiladriHazra">github.com/NiladriHazra</a></span><span><a href="https://www.linkedin.com/in/niladri-hazra-b573282a7/">linkedin.com/in/niladri-hazra</a></span><span><a href="https://x.com/byteHumi">x.com/byteHumi</a></span>
     </div>
   </header>
 
-  <p class="summary">
-    Product engineer who builds things and gets them in front of people. I built <b>Open Fiesta</b>, an open-source multi-model AI
-    playground that one tweet turned into ~32K users and 958 GitHub stars, and that's how I joined <b>Runable</b> as its first tech intern.
-    I work across full-stack web, native macOS, AI pipelines and growth.
-  </p>
-
-  <div class="stats">
-    <div class="stat"><b>80M</b><span>views from an AI UGC pipeline in 2 months</span></div>
-    <div class="stat"><b>32K</b><span>Open Fiesta sign-ups after going viral</span></div>
-    <div class="stat"><b>958★</b><span>GitHub stars, 186 forks, Vercel-sponsored</span></div>
-    <div class="stat"><b>2.5K</b><span>Runclub hackathon submissions in 2 weeks</span></div>
-  </div>
-
   <h2>Experience</h2>
-  <div class="item">
-    <div class="row"><span class="t">Runable <i>· GTM Engineer (joined as first tech intern)</i></span><span class="d">Sep 2025 – Present</span></div>
+  <div class="entry">
+    <div class="row"><span><b>Runable</b></span><span class="date">Sep 2025 – Present</span></div>
+    <div class="row"><i>GTM Engineer (joined as first tech intern)</i></div>
     <ul>
-      <li>Built <b>image and video generation</b>, which shipped as the product's carousel feature.</li>
-      <li>Led the tech side of an <b>AI UGC pipeline</b> (built, broke and rebuilt it) that published to YouTube, TikTok and Instagram: <b>~80M views in two months</b>.</li>
-      <li>Ran the company X account and started <b>Runclub</b>, a builder community whose weekly hackathons drew <b>2,500 submissions in two weeks</b>.</li>
-      <li>Wrote the product documentation. Now leading the technical side of scaling the <b>affiliate program</b>.</li>
+      <li>Built the image and video generation feature that shipped as the carousel feature.</li>
+      <li>Engineered an AI UGC content pipeline publishing to YouTube, TikTok and Instagram, reaching ~80M views in two months.</li>
+      <li>Launched Runclub, a builder community whose weekly hackathons drew 2,500 submissions in two weeks.</li>
+      <li>Lead the technical side of the affiliate program; wrote the product docs and ran the company X account.</li>
     </ul>
   </div>
-  <div class="item">
-    <div class="row"><span class="t">Long Term Collab (Groimon) <i>· Software Developer Intern</i></span><span class="d">May 2025 – Sep 2025</span></div>
+  <div class="entry">
+    <div class="row"><span><b>Long Term Collab (Groimon)</b></span><span class="date">May 2025 – Sep 2025</span></div>
+    <div class="row"><i>Software Developer Intern</i></div>
     <ul>
-      <li>Built Instagram DM, comment and story automation with keyword triggers and conditional logic (Next.js, Node.js, AWS).</li>
-      <li>Cut creators' manual moderation time by <b>60%</b> and raised DAU engagement by <b>35%</b> (Redis, Next.js, Node.js). Shipped an IPL-style gamification system with leaderboards.</li>
+      <li>Built Instagram DM, comment and story automation with keyword triggers (Next.js, Node.js, AWS).</li>
+      <li>Reduced creators' manual moderation time by 60% and increased DAU engagement by 35% (Redis).</li>
+      <li>Shipped an IPL-themed gamification system with leaderboards and tasks.</li>
     </ul>
   </div>
-  <div class="item">
-    <div class="row"><span class="t">Eastern Coalfields Limited <i>· Software Developer Intern</i></span><span class="d">Dec 2024 – Apr 2025</span></div>
+  <div class="entry">
+    <div class="row"><span><b>Eastern Coalfields Limited</b></span><span class="date">Dec 2024 – Apr 2025</span></div>
+    <div class="row"><i>Software Developer Intern</i></div>
     <ul>
-      <li>Built a hospital appointment system that improved access to appointments by <b>40%</b> and cut booking time by <b>50%</b> (Next.js, Express, Node.js, AWS).</li>
+      <li>Built a hospital appointment system with real-time scheduling, improving appointment access by 40% and cutting booking time by 50% (Next.js, Express, AWS).</li>
     </ul>
   </div>
 
   <h2>Projects</h2>
-  <div class="item">
-    <div class="row"><span class="t">Klipeo <i>· AI video editor for product videos</i></span><a class="link" href="https://klipeo.com">klipeo.com</a></div>
+  <div class="entry">
+    <div class="row"><span><b>Open Fiesta</b> | <span class="tech">Next.js, TypeScript, Supabase, Docker</span></span><a class="date" href="https://openfiesta.app">openfiesta.app</a></div>
     <ul>
-      <li>Conversational editor (Vibe) that writes atomic patches to the same composition model as a full multi-track timeline. It can hand work to a user's local Claude Code, Codex or OpenCode.</li>
-      <li>Web, plus a native SwiftUI/AppKit macOS app with screen recording, Developer ID-signed and notarized.</li>
+      <li>Open-source chat app for comparing up to five AI models side by side across Gemini, OpenRouter and Ollama.</li>
+      <li>Went viral on X: ~32K sign-ups, 958 GitHub stars and 186 forks; sponsored by Vercel.</li>
     </ul>
-    <div class="stack">Next.js 16 · React 19 · Remotion · Bun/Turborepo · Drizzle · PostgreSQL · SwiftUI</div>
   </div>
-  <div class="item">
-    <div class="row"><span class="t">Open Fiesta <i>· open-source multi-model AI chat</i></span><a class="link" href="https://openfiesta.app">openfiesta.app</a></div>
+  <div class="entry">
+    <div class="row"><span><b>Klipeo</b> | <span class="tech">Next.js, React, Remotion, PostgreSQL, SwiftUI</span></span><a class="date" href="https://klipeo.com">klipeo.com</a></div>
     <ul>
-      <li>Compare up to 5 models side by side across Gemini, OpenRouter and Ollama, with web search, image input and shareable chats. <b>958★, 186 forks, ~32K users</b>, sponsored by Vercel.</li>
+      <li>AI video editor for product videos where an agent edits the same multi-track timeline the user works on.</li>
+      <li>Web app plus a native macOS app with screen recording, signed and notarized.</li>
     </ul>
-    <div class="stack">Next.js · TypeScript · Supabase · Docker</div>
   </div>
-  <div class="two">
-    <div class="item">
-      <div class="row"><span class="t">agent-manager <i>· macOS</i></span><a class="link" href="https://github.com/NiladriHazra/agent-manager">GitHub</a></div>
-      <ul><li>Native menu bar app showing which coding agents are working, waiting or idle, plus quota and spend. Signed and notarized.</li></ul>
-      <div class="stack">Swift · SwiftUI · SwiftPM</div>
-    </div>
-    <div class="item">
-      <div class="row"><span class="t">WhatToBuild <i>· dev tool</i></span><a class="link" href="https://what-to-build.niladri.tech">Live</a></div>
-      <ul><li>AI repo discovery and analysis, developer comparison, and a README generator that opens PRs. 74★.</li></ul>
-      <div class="stack">Next.js 15 · Gemini · GitHub API · Mermaid</div>
-    </div>
-    <div class="item">
-      <div class="row"><span class="t">filerepo <i>· CLI/TUI</i></span><a class="link" href="https://github.com/NiladriHazra/filerepo">GitHub</a></div>
-      <ul><li>Browse any GitHub repo in the terminal and download just the files you need. Distributed on npm.</li></ul>
-      <div class="stack">Go · Bubble Tea</div>
-    </div>
-    <div class="item">
-      <div class="row"><span class="t">MaxMEM <i>· agent tooling</i></span><a class="link" href="https://github.com/NiladriHazra/MaxMEM">GitHub</a></div>
-      <ul><li>Local-first handoff memory for Codex, Claude Code and OpenCode. ~2.3K npm downloads.</li></ul>
-      <div class="stack">TypeScript · Bun · MCP</div>
-    </div>
+  <div class="entry">
+    <div class="row"><span><b>agent-manager</b> | <span class="tech">Swift, SwiftUI</span></span><a class="date" href="https://github.com/NiladriHazra/agent-manager">github.com/NiladriHazra/agent-manager</a></div>
+    <ul>
+      <li>macOS menu bar app that shows which coding agents are working or waiting on you, with usage and spend.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><b>WhatToBuild</b> | <span class="tech">Next.js, Gemini, GitHub API</span></span><a class="date" href="https://github.com/NiladriHazra/WhatToBuild">github.com/NiladriHazra/WhatToBuild</a></div>
+    <ul>
+      <li>Finds and analyzes open-source repositories, compares developers and generates READMEs; 74 GitHub stars.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><b>filerepo</b> and <b>MaxMEM</b> | <span class="tech">Go, TypeScript</span></span><a class="date" href="https://github.com/NiladriHazra">github.com/NiladriHazra</a></div>
+    <ul>
+      <li>filerepo: terminal UI to download any file or folder from GitHub. MaxMEM: handoff memory for coding agents (~2.3K npm downloads).</li>
+    </ul>
   </div>
 
-  <div class="two edu">
-    <div>
-      <h2>Education</h2>
-      <div class="item" style="margin-top:4pt">
-        <div class="row"><span class="t">Techno Main Salt Lake</span><span class="d">2022 – 2026</span></div>
-        <div class="note">B.Tech, Computer Science (AI &amp; ML) · GPA 8.45 / 10</div>
-      </div>
-    </div>
-    <div>
-      <h2>Skills</h2>
-      <div class="skills">
-        <b>Languages</b><span>TypeScript, JavaScript, Swift, Go, Python</span>
-        <b>Product</b><span>Next.js, React, Node.js, SwiftUI, Remotion</span>
-        <b>AI</b><span>LLM apps, agents &amp; tool use, content pipelines</span>
-        <b>Infra</b><span>Cloudflare, Vercel, AWS, Postgres, Redis</span>
-      </div>
-    </div>
+  <h2>Skills</h2>
+  <div class="skills">
+    <p><b>Languages:</b> TypeScript, JavaScript, Swift, Go, Python, SQL</p>
+    <p><b>Frameworks:</b> Next.js, React, Node.js, Express, SwiftUI, Remotion, Tailwind CSS</p>
+    <p><b>Infrastructure:</b> AWS, Cloudflare, Vercel, PostgreSQL, Supabase, Redis, Docker</p>
+  </div>
+
+  <h2>Education</h2>
+  <div class="entry" style="margin-top:3pt">
+    <div class="row"><span><b>Techno Main Salt Lake</b></span><span class="date">2022 – 2026</span></div>
+    <div class="row"><i>B.Tech in Computer Science (AI &amp; ML), CGPA 8.45/10</i><i>Kolkata, India</i></div>
   </div>
 </body>
 </html>
