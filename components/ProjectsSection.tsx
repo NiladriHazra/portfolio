@@ -5,9 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import NextLink from "next/link";
 import { featuredIds, projectCards, type ProjectCard } from "@/data/project";
 import { usePortfolioSound } from "@/hooks/usePortfolioSound";
-import { posterFor } from "@/lib/poster";
-import { Chevron, LogoTile } from "@/components/RowBits";
 import { useGitHubStars } from "@/hooks/useGitHubStars";
+import { posterFor } from "@/lib/poster";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -47,54 +46,58 @@ function ProjectRow({
   stars,
   open,
   onToggle,
+  onHover,
   last,
 }: {
   project: ProjectCard;
   stars?: number;
   open: boolean;
   onToggle: () => void;
+  onHover: () => void;
   last: boolean;
 }) {
   const playClick = usePortfolioSound("/sounds/click.mp3");
   const hasCaseStudy = project.href.startsWith("/projects/");
 
   return (
-    <li className={last ? "" : "border-b border-zinc-200 dark:border-zinc-800"}>
+    <li onMouseEnter={onHover} className={`group/item ${last ? "" : "border-b border-zinc-500/20"}`}>
       <button
         type="button"
         aria-expanded={open}
         onClick={onToggle}
-        className="group/row flex w-full cursor-pointer items-center gap-3 py-3.5 text-left"
+        className="flex w-full cursor-pointer flex-col gap-1 py-3 text-left transition-transform duration-300 ease-out hover:-translate-x-0.5 sm:flex-row sm:items-center sm:justify-between"
       >
-        <LogoTile src={project.logo} icon={project.icon} />
-        <span className="min-w-0 flex-1">
-          <span className="flex items-baseline gap-2">
-            <span className="text-zinc-900 dark:text-zinc-100">{project.title}</span>
-            {stars !== undefined && (
-              <span
-                className="text-xs tabular-nums text-zinc-400"
-                title={`${stars.toLocaleString()} GitHub stars`}
-              >
-                ★ {stars.toLocaleString()}
-              </span>
-            )}
-          </span>
-          <span className="block text-sm text-pretty text-zinc-500 dark:text-zinc-400">{project.description}</span>
+        <span className="list-title flex items-baseline gap-2 text-sm sm:text-base">
+          {project.title}
+          {stars !== undefined && (
+            <span className="list-meta text-xs tabular-nums" title={`${stars.toLocaleString()} GitHub stars`}>
+              ★ {stars.toLocaleString()}
+            </span>
+          )}
         </span>
-        <Chevron open={open} />
+        <span className="list-meta flex items-center gap-2 text-sm">
+          {project.category} · {project.year}
+          <span
+            aria-hidden
+            className={`inline-block w-3 text-center transition-transform duration-300 ${open ? "rotate-45" : ""}`}
+          >
+            +
+          </span>
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
             key="body"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ height: 0, opacity: 0, filter: "blur(4px)" }}
+            animate={{ height: "auto", opacity: 1, filter: "blur(0px)" }}
+            exit={{ height: 0, opacity: 0, filter: "blur(4px)" }}
             transition={{ duration: 0.4, ease }}
             className="overflow-hidden"
           >
-            <div className="pb-6 pt-1 sm:pl-10">
+            <div className="pb-6 pt-1">
+              <p className="mb-4 text-zinc-900 dark:text-zinc-100">{project.description}</p>
               <PreviewWindow project={project} />
               <p className="mt-4 leading-7 text-zinc-600 dark:text-zinc-400 text-pretty">{project.about}</p>
               <p className="mt-3 font-mono text-xs leading-5 text-zinc-500">{project.stack.join("  ·  ")}</p>
@@ -103,7 +106,7 @@ function ProjectRow({
                   <NextLink
                     href={`${project.href}?from=home`}
                     onClick={() => playClick()}
-                    className="rounded-lg bg-zinc-900 px-3 py-1 text-white transition-colors hover:bg-blue dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-blue dark:hover:text-white"
+                    className="w-fit rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1 text-zinc-950 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800"
                   >
                     Read more
                   </NextLink>
@@ -117,7 +120,7 @@ function ProjectRow({
                     onClick={() => playClick()}
                     className="text-zinc-600 underline decoration-dotted decoration-zinc-400 underline-offset-[3px] transition-colors hover:text-blue hover:decoration-blue dark:text-zinc-300 dark:decoration-zinc-600"
                   >
-                    {link.label} ↗
+                    {link.label}
                   </a>
                 ))}
               </div>
@@ -133,6 +136,7 @@ export default function ProjectsSection() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const playClick = usePortfolioSound("/sounds/click.mp3");
+  const playHover = usePortfolioSound("/sounds/hover.mp3", 0.06);
   const stars = useGitHubStars();
 
   const shown = isExpanded ? projectCards : projectCards.filter((p) => featuredIds.includes(p.id));
@@ -141,7 +145,7 @@ export default function ProjectsSection() {
     <div id="projects" className="pt-14 scroll-mt-20">
       <h2 className="font-sans text-zinc-500">Projects</h2>
 
-      <ul className="mt-3 flex flex-col">
+      <ul className="group mt-4 flex flex-col">
         {shown.map((project, i) => (
           <ProjectRow
             key={project.id}
@@ -149,6 +153,7 @@ export default function ProjectsSection() {
             stars={project.repo ? stars[project.repo] : undefined}
             open={openId === project.id}
             last={i === shown.length - 1}
+            onHover={() => playHover()}
             onToggle={() => {
               playClick();
               setOpenId(openId === project.id ? null : project.id);
@@ -158,7 +163,7 @@ export default function ProjectsSection() {
       </ul>
 
       {projectCards.length > featuredIds.length && (
-        <div className="mt-6 flex justify-center">
+        <div className="mt-8 flex items-center justify-center">
           <button
             onClick={() => {
               setIsExpanded(!isExpanded);
@@ -166,7 +171,7 @@ export default function ProjectsSection() {
             }}
             className="w-fit cursor-pointer rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1 text-sm text-zinc-950 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800"
           >
-            {isExpanded ? "Show fewer" : `Show ${projectCards.length - featuredIds.length} more`}
+            {isExpanded ? "See less" : "See more"}
           </button>
         </div>
       )}

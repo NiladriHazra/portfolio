@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import Link from "@/components/Link";
 import ProjectsSection from "@/components/ProjectsSection";
 import ThemeToggle from "@/components/ThemeToggle";
-import ResumeButton from "@/components/ResumeButton";
+import NextLink from "next/link";
 import { site } from "@/data/site";
 import { usePortfolioSound } from "@/hooks/usePortfolioSound";
 import { useGitHubStars } from "@/hooks/useGitHubStars";
@@ -45,7 +45,13 @@ export default function Home() {
               {site.name} <span className="text-zinc-400">(Humi)</span>
             </h1>
             <div className="flex items-center gap-3">
-              <ResumeButton />
+              <NextLink
+                href="/resume"
+                onClick={() => playClick()}
+                className="w-fit rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1 text-sm text-zinc-950 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800"
+              >
+                Resume
+              </NextLink>
               <ThemeToggle />
             </div>
           </div>

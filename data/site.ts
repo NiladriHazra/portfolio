@@ -54,7 +54,7 @@ export const site: SiteConfig = {
     { label: "X", href: "https://x.com/byteHumi", display: "@byteHumi" },
     { label: "GitHub", href: "https://github.com/NiladriHazra", display: "NiladriHazra" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/niladri-hazra-b573282a7/", display: "Niladri Hazra" },
-    { label: "Resume", href: "/resume.pdf", display: "resume.pdf" },
+    { label: "Resume", href: "/resume", display: "resume" },
   ],
   lastUpdated: "November 2026",
 };
