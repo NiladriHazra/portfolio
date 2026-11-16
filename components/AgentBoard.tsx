@@ -107,10 +107,20 @@ export default function AgentBoard() {
   const { status, skew } = data;
   const age = Date.now() - skew - Date.parse(status.at);
   const awake = age < STALE_MS;
-  const live = awake && status.working > 0;
 
-  const shown = status.sessions.filter((s) => s.state !== "idle").slice(0, 4);
-  const extra = status.sessions.filter((s) => s.state !== "idle").length - shown.length;
+  // One line per agent, not per session: "Codex  2 working on klipeo, 1 waiting".
+  const rows = Object.entries(
+    status.sessions
+      .filter((x) => x.state !== "idle")
+      .reduce<Record<string, { working: number; waiting: number; projects: Set<string> }>>((acc, x) => {
+        const row = (acc[x.agent] ??= { working: 0, waiting: 0, projects: new Set() });
+        if (x.state === "working") {
+          row.working += 1;
+          if (x.project) row.projects.add(x.project);
+        } else row.waiting += 1;
+        return acc;
+      }, {}),
+  ).sort((x, y) => y[1].working - x[1].working || y[1].waiting - x[1].waiting);
 
   let headline: string;
   if (!awake) headline = `Agents asleep. Last ran ${ago(age)}.`;
@@ -139,48 +149,39 @@ export default function AgentBoard() {
         </span>
       </div>
 
-      <p className="mt-3 flex items-center gap-2.5">
-        <span className="relative flex size-2 shrink-0">
-          {live && <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500/60" />}
-          <span
-            className={`relative size-2 rounded-full ${
-              live ? "bg-emerald-500" : awake && status.waiting ? "bg-amber-400" : "bg-zinc-300 dark:bg-zinc-700"
-            }`}
-          />
-        </span>
-        <span>{headline}</span>
-      </p>
+      <p className="mt-3">{headline}</p>
 
       <AnimatePresence initial={false}>
-        {awake && shown.length > 0 && (
+        {awake && rows.length > 0 && (
           <motion.ul
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mt-2 flex flex-col gap-1 overflow-hidden pl-[18px] text-sm"
+            className="mt-2 flex flex-col gap-1 overflow-hidden text-sm"
           >
-            {shown.map((s, i) => (
-              <li
-                key={`${s.agent}-${s.project}-${i}`}
-                className={`flex items-center gap-2 ${
-                  s.state === "working" ? "text-zinc-700 dark:text-zinc-300" : "text-zinc-400 dark:text-zinc-500"
-                }`}
-              >
-                <Mark agent={s.agent} />
-                <span>
-                  {NAMES[s.agent] ?? s.agent}{" "}
-                  <span className="text-zinc-400 dark:text-zinc-500">{s.state === "working" ? "on" : "waiting in"}</span>{" "}
-                  {s.project ? <span className="font-mono text-[13px]">{s.project}</span> : "something private"}
-                </span>
-              </li>
-            ))}
-            {extra > 0 && <li className="text-zinc-400 dark:text-zinc-500">and {extra} more</li>}
+            {rows.map(([agent, row]) => {
+              const parts: string[] = [];
+              if (row.working)
+                parts.push(
+                  `${row.working} working${row.projects.size ? ` on ${[...row.projects].join(", ")}` : ""}`,
+                );
+              if (row.waiting) parts.push(`${row.waiting} waiting`);
+              return (
+                <li key={agent} className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+                  <Mark agent={agent} />
+                  <span>
+                    {NAMES[agent] ?? agent}{" "}
+                    <span className="text-zinc-400 dark:text-zinc-500">{parts.join(", ")}</span>
+                  </span>
+                </li>
+              );
+            })}
           </motion.ul>
         )}
       </AnimatePresence>
 
       {awake && status.tokensToday > 0 && (
-        <p className="mt-2 pl-[18px] font-mono text-xs tabular-nums text-zinc-400 dark:text-zinc-500">
+        <p className="mt-2 font-mono text-xs tabular-nums text-zinc-400 dark:text-zinc-500">
           {compact(status.tokensToday)} tokens today
         </p>
       )}

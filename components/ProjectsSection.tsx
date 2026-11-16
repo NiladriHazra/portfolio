@@ -32,16 +32,10 @@ function Preview({ project, index }: { project: ProjectCard; index: number }) {
           )}
         </div>
       </div>
-      <figcaption className="mt-2 flex items-center justify-between px-1 font-mono text-[11px] tracking-tight text-zinc-400 dark:text-zinc-500">
+      <figcaption className="mt-2 px-1 font-mono text-[11px] tracking-tight text-zinc-400 dark:text-zinc-500">
         <span>
           fig. {String(index + 1).padStart(2, "0")} — {project.title.toLowerCase()}, {caption.toLowerCase()}
         </span>
-        {project.mediaType === "video" && (
-          <span className="flex items-center gap-1.5">
-            <span className="size-1.5 animate-pulse rounded-full bg-red-500/80" />
-            playing
-          </span>
-        )}
       </figcaption>
     </figure>
   );
@@ -142,7 +136,7 @@ function ProjectRow({
 
 export default function ProjectsSection() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openId, setOpenId] = useState<string | null>("klipeo");
+  const [openId, setOpenId] = useState<string | null>(null);
   const playClick = usePortfolioSound("/sounds/click.mp3");
   const playHover = usePortfolioSound("/sounds/hover.mp3", 0.06);
   const stars = useGitHubStars();
