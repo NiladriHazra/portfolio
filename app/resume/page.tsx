@@ -35,10 +35,11 @@ function loadResume() {
 export default function ResumePage() {
   const { css, body } = loadResume();
   return (
-    <div className="min-h-screen bg-zinc-100 pb-16 dark:bg-zinc-950">
+    <div className="min-h-screen bg-background pb-20">
       <style>{`${css}
         .resume-sheet ul { list-style: disc; }
-        .resume-sheet { background: #fff; color: #000; margin: 0 auto; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 40px -12px rgba(0,0,0,.18); }
+        .resume-sheet { background: #fff; color: #000; margin: 0 auto; border: 1px solid #e4e4e7; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 24px 48px -24px rgba(0,0,0,.18); }
+        .dark .resume-sheet { border-color: #323232; }
         @media (max-width: 880px) { .resume-sheet { zoom: 0.86; } }
         @media (max-width: 740px) { .resume-sheet { zoom: 0.7; } }
         @media (max-width: 600px) { .resume-sheet { zoom: 0.56; } }
@@ -47,11 +48,11 @@ export default function ResumePage() {
           @page { size: Letter; margin: 0; }
           .resume-bar { display: none !important; }
           .resume-page { padding: 0 !important; background: #fff !important; }
-          .resume-sheet { zoom: 1 !important; box-shadow: none !important; }
+          .resume-sheet { zoom: 1 !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; }
         }
       `}</style>
       <ResumeBar />
-      <div className="resume-page px-4 pt-6">
+      <div className="resume-page px-4">
         <div className="resume-sheet" dangerouslySetInnerHTML={{ __html: body }} />
       </div>
     </div>

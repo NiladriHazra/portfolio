@@ -10,8 +10,8 @@ const button =
 export default function ResumeBar() {
   const playClick = usePortfolioSound("/sounds/click.mp3");
   return (
-    <div className="resume-bar sticky top-0 z-10 border-b border-zinc-200 bg-zinc-100/85 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/85">
-      <div className="mx-auto flex max-w-[816px] items-center justify-between gap-3 px-4 py-3">
+    <div className="resume-bar">
+      <div className="mx-auto flex max-w-[816px] items-center justify-between gap-3 px-4 pb-6 pt-8 sm:pt-12">
         <Link href="/" onClick={() => playClick()} className={button}>
           <span>↩</span>
           <span>Back</span>
