@@ -3,12 +3,16 @@
   "name": "portfolio",
   "compatibility_date": "2026-11-01",
   "workers_dev": true,
-  // Static site only: no Worker script, Cloudflare serves out/ directly.
+  // Static site in out/. The script only answers /api/* (live agent status).
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
+  "kv_namespaces": [{ "binding": "AGENT_STATUS", "id": "1dd3855e764548f2a9d270067a1ab46f" }],
   "routes": [
     { "pattern": "niladri.in", "custom_domain": true },
     { "pattern": "www.niladri.in", "custom_domain": true },

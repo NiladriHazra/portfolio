@@ -60,3 +60,4 @@ venv/
 # cloudflare
 .wrangler/
 .claude/
+.dev.vars

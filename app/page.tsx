@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Container from "@/components/Container";
+import AgentBoard from "@/components/AgentBoard";
 import ExperienceSection from "@/components/ExperienceSection";
 import Footer from "@/components/Footer";
 import Link from "@/components/Link";
@@ -83,6 +84,8 @@ export default function Home() {
             <Link href={site.cta.href} external>email</Link>.
           </p>
         </motion.div>
+
+        <AgentBoard />
 
         {/* Experience */}
         <motion.div
