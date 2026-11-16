@@ -56,7 +56,7 @@ export const projectCards: ProjectCard[] = [
     logo: "/logos/klipeo.png",
     media: "/img/klipeo.mp4",
     mediaType: "video",
-    windowTitle: "klipeo-launch · Editing",
+    windowTitle: "klipeo · launch film",
     stack: ["Next.js", "React", "Remotion", "Bun", "PostgreSQL", "SwiftUI"],
     links: [{ label: "klipeo.com", href: "https://klipeo.com" }],
     href: "/projects/klipeo",

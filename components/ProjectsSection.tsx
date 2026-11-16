@@ -10,34 +10,40 @@ import { posterFor } from "@/lib/poster";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/** The project's preview, framed like a small app window. */
-function PreviewWindow({ project }: { project: ProjectCard }) {
+/** The project's preview: a matted print with a figure caption, no fake window chrome. */
+function Preview({ project, index }: { project: ProjectCard; index: number }) {
+  const caption = project.windowTitle.split("·").pop()?.trim() || project.title;
   return (
-    <div className="overflow-hidden rounded-xl bg-[#141416] ring-1 ring-black/10 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] dark:ring-white/10">
-      <div className="flex items-center gap-3 border-b border-white/8 px-3 py-2">
-        <span className="flex gap-1.5" aria-hidden>
-          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="size-2.5 rounded-full bg-[#febc2e]" />
-          <span className="size-2.5 rounded-full bg-[#28c840]" />
+    <figure className="m-0">
+      <div className="rounded-[14px] bg-zinc-100 p-1.5 ring-1 ring-zinc-200/80 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div className="relative aspect-video overflow-hidden rounded-[9px] bg-black ring-1 ring-black/5 dark:ring-white/5">
+          {project.mediaType === "video" ? (
+            <video
+              src={project.media}
+              poster={posterFor(project.media)}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <img src={project.media} alt={`${project.title} preview`} className="absolute inset-0 h-full w-full object-cover" />
+          )}
+        </div>
+      </div>
+      <figcaption className="mt-2 flex items-center justify-between px-1 font-mono text-[11px] tracking-tight text-zinc-400 dark:text-zinc-500">
+        <span>
+          fig. {String(index + 1).padStart(2, "0")} — {project.title.toLowerCase()}, {caption.toLowerCase()}
         </span>
-        <span className="truncate font-mono text-[11px] text-white/55">{project.windowTitle}</span>
-      </div>
-      <div className="relative aspect-video bg-black">
-        {project.mediaType === "video" ? (
-          <video
-            src={project.media}
-            poster={posterFor(project.media)}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        ) : (
-          <img src={project.media} alt={`${project.title} preview`} className="absolute inset-0 h-full w-full object-cover" />
+        {project.mediaType === "video" && (
+          <span className="flex items-center gap-1.5">
+            <span className="size-1.5 animate-pulse rounded-full bg-red-500/80" />
+            playing
+          </span>
         )}
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -48,8 +54,10 @@ function ProjectRow({
   onToggle,
   onHover,
   last,
+  index,
 }: {
   project: ProjectCard;
+  index: number;
   stars?: number;
   open: boolean;
   onToggle: () => void;
@@ -98,7 +106,7 @@ function ProjectRow({
           >
             <div className="pb-6 pt-1">
               <p className="mb-4 text-zinc-900 dark:text-zinc-100">{project.description}</p>
-              <PreviewWindow project={project} />
+              <Preview project={project} index={index} />
               <p className="mt-4 leading-7 text-zinc-600 dark:text-zinc-400 text-pretty">{project.about}</p>
               <p className="mt-3 font-mono text-xs leading-5 text-zinc-500">{project.stack.join("  ·  ")}</p>
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
@@ -134,7 +142,7 @@ function ProjectRow({
 
 export default function ProjectsSection() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [openId, setOpenId] = useState<string | null>("klipeo");
   const playClick = usePortfolioSound("/sounds/click.mp3");
   const playHover = usePortfolioSound("/sounds/hover.mp3", 0.06);
   const stars = useGitHubStars();
@@ -153,6 +161,7 @@ export default function ProjectsSection() {
             stars={project.repo ? stars[project.repo] : undefined}
             open={openId === project.id}
             last={i === shown.length - 1}
+            index={i}
             onHover={() => playHover()}
             onToggle={() => {
               playClick();

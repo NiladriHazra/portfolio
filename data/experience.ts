@@ -8,6 +8,8 @@ export interface Role {
   org: string;
   /** Omit to render the company name as plain text. */
   href?: string;
+  /** Shown blurred until hovered or opened. */
+  muted?: boolean;
   logo: string;
   title: string;
   start: string;
@@ -33,6 +35,7 @@ export const experience: Role[] = [
   },
   {
     org: "Long Term Collab",
+    muted: true,
     logo: "/logos/groimon.svg",
     title: "Software Developer Intern",
     start: "May 2025",
@@ -41,6 +44,7 @@ export const experience: Role[] = [
   },
   {
     org: "Eastern Coalfields Limited",
+    muted: true,
     logo: "/logos/ecl.png",
     title: "Software Developer Intern",
     start: "Dec 2024",

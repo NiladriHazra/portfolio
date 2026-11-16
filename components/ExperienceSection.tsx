@@ -23,7 +23,7 @@ function OrgName({ role }: { role: Role }) {
 }
 
 export default function ExperienceSection() {
-  const [openOrg, setOpenOrg] = useState<string | null>(experience[0]?.org ?? null);
+  const [openOrg, setOpenOrg] = useState<string | null>(null);
   const playClick = usePortfolioSound("/sounds/click.mp3");
   const playHover = usePortfolioSound("/sounds/hover.mp3", 0.06);
 
@@ -55,7 +55,11 @@ export default function ExperienceSection() {
                     toggle();
                   }
                 }}
-                className="flex cursor-pointer flex-col gap-1 py-3 transition-transform duration-300 ease-out hover:-translate-x-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                className={`flex cursor-pointer flex-col gap-1 py-3 transition-[transform,filter,opacity] duration-500 ease-out hover:-translate-x-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
+                  role.muted && !open
+                    ? "opacity-70 blur-[2px] group-hover/item:opacity-100 group-hover/item:blur-none focus-visible:opacity-100 focus-visible:blur-none"
+                    : ""
+                }`}
               >
                 <span className="list-title flex items-center gap-2.5 text-sm sm:text-base">
                   <img
