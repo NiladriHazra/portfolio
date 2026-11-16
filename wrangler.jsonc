@@ -2,10 +2,17 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio",
   "compatibility_date": "2026-11-01",
+  "workers_dev": true,
   // Static site only: no Worker script, Cloudflare serves out/ directly.
   "assets": {
     "directory": "./out",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  "routes": [
+    { "pattern": "niladri.in", "custom_domain": true },
+    { "pattern": "www.niladri.in", "custom_domain": true },
+    { "pattern": "niladrihazra.com", "custom_domain": true },
+    { "pattern": "www.niladrihazra.com", "custom_domain": true }
+  ]
 }
